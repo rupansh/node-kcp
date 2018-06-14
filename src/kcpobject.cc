@@ -93,6 +93,7 @@ namespace node_kcp
         }
         if (recvBuff) {
             free(recvBuff);
+            recvBuff = NULL;
         }
         if (!output.IsEmpty()) {
             output.Reset();
@@ -162,7 +163,14 @@ namespace node_kcp
     NAN_METHOD(KCPObject::Release)
     {
         KCPObject* thiz = ObjectWrap::Unwrap<KCPObject>(info.Holder());
-        delete thiz;
+        if (thiz->kcp) {
+            ikcp_release(thiz->kcp);
+            thiz->kcp = NULL;
+        }
+        if (thiz->recvBuff) {
+            free(thiz->recvBuff);
+            thiz->recvBuff = NULL;
+        }
     }
 
     NAN_METHOD(KCPObject::Recv)
