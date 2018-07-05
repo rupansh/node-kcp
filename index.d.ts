@@ -38,7 +38,7 @@ export class KCP {
     send(pkg: string | Buffer): void;
     output(func: (data: any, size: number, thiz: any) => void): void;
     update(ts: number): void;
-    check(ts: number): void;
+    check(ts: number): number;
     flush(): void;
     peeksize(): number;
     waitsnd(): number;
