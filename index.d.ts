@@ -27,7 +27,7 @@ declare interface ISocket {
 }
 
 export class KCP {
-    constructor(conv: number, user: any) 
+    constructor(conv: number, token: number, user: any) 
     wndsize(sndwnd: number, rcvwnd: number): void;
     setmtu(mtu: number): void;
     nodelay(nodelay: number, interval: number, resend: number, nc: number): void;

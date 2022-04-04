@@ -29,7 +29,7 @@ namespace node_kcp {
             static NAN_MODULE_INIT(Init);
 
         private:
-            explicit KCPObject(IUINT32 conv);
+            explicit KCPObject(IUINT32 conv, IUINT32 token);
             ~KCPObject();
 
             static NAN_METHOD(New);

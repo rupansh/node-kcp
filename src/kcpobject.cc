@@ -70,9 +70,9 @@ namespace node_kcp
         return len;
     }
 
-    KCPObject::KCPObject(IUINT32 conv)
+    KCPObject::KCPObject(IUINT32 conv, IUINT32 token)
     {
-        kcp = ikcp_create(conv, this);
+        kcp = ikcp_create(conv, token, this);
         kcp->output = KCPObject::kcp_output;
         recvBuff = (char*)realloc(recvBuff, recvBuffSize);
     }
@@ -129,9 +129,10 @@ namespace node_kcp
         }
         if (info.IsConstructCall()) {
             uint32_t conv = To<uint32_t>(info[0]).FromJust();
-            KCPObject* kcpobj = new KCPObject(conv);
-            if (info[1]->IsObject()) {
-                kcpobj->context.Reset(Local<Object>::Cast(info[1]));
+			uint32_t token = To<uint32_t>(info[1]).FromJust();
+            KCPObject* kcpobj = new KCPObject(conv, token);
+            if (info[2]->IsObject()) {
+                kcpobj->context.Reset(Local<Object>::Cast(info[2]));
             }
             kcpobj->Wrap(info.This());
             info.GetReturnValue().Set(info.This());
