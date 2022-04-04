@@ -1,5 +1,5 @@
 var kcp = require('./../build/Release/kcp');
-var kcpobj = new kcp.KCP(123, {address: '127.0.0.1', port: 41234});
+var kcpobj = new kcp.KCP(123, 0, {address: '127.0.0.1', port: 41234});
 var dgram = require('dgram');
 var client = dgram.createSocket('udp4');
 var msg = JSON.stringify({

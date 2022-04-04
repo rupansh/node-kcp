@@ -20,7 +20,7 @@ server.on('message', (data, rinfo) => {
             address : rinfo.address,
             port : rinfo.port
         };
-        var kcpobj = new kcp.KCP(123, context);
+        var kcpobj = new kcp.KCP(123, 0, context);
         kcpobj.stream(1);
         kcpobj.nodelay(0, interval, 0, 0);
         kcpobj.output(output);

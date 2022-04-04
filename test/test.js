@@ -1,8 +1,8 @@
 var kcp = require('./../build/Release/kcp');
 var expect = require('chai').expect;
 
-var kcpobj1 = new kcp.KCP(123, {name : 'kcpobj1'});
-var kcpobj2 = new kcp.KCP(123, {name : 'kcpobj2'});
+var kcpobj1 = new kcp.KCP(123, 0, {name : 'kcpobj1'});
+var kcpobj2 = new kcp.KCP(123, 0, {name : 'kcpobj2'});
 
 var interval = 10;
 var msg = 'helloworld';
